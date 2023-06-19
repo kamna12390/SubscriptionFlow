@@ -13,7 +13,9 @@ import com.crop.photo.image.resize.cut.tools.subscripction.ProductPurchaseHelper
 import com.example.demo.subscriptionbackgroundflow.R
 import com.example.demo.subscriptionbackgroundflow.basemodule.BaseSharedPreferences
 import com.example.demo.subscriptionbackgroundflow.constants.Constants
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.NavigationBarColor
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mHEIGHT
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mSYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mWIDTH
 import com.example.demo.subscriptionbackgroundflow.databinding.ActivitySubscriptionBinding
 import com.example.demo.subscriptionbackgroundflow.helper.*
@@ -31,7 +33,11 @@ class SubscriptionActivity : BaseSubscriptionActivity() , ProductPurchaseHelper.
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         hideSystemUI()
-
+        setStatusBarGradiant(
+            this,
+            NavigationBarColor,
+            mSYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+        )
         logD("DeviceHeightAndWeight", "height==${mHEIGHT}===weight==${mWIDTH}")
         binding = DataBindingUtil.setContentView(this, R.layout.activity_subscription)
         binding.viewmodel = SubscriptionViewModel(binding, this,liveDataPeriod,liveDataPrice,subscriptionManager,object :SubscriptionViewModel.IsSelecterdPlan{
@@ -132,10 +138,8 @@ class SubscriptionActivity : BaseSubscriptionActivity() , ProductPurchaseHelper.
     }
 
     override fun onBillingSetupFinished(billingResult: BillingResult) {
-        TODO("Not yet implemented")
     }
 
     override fun onBillingKeyNotFound(productId: String) {
-        TODO("Not yet implemented")
     }
 }

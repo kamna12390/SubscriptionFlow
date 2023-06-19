@@ -8,6 +8,7 @@ import com.example.demo.subscriptionbackgroundflow.basemodule.BaseSharedPreferen
 import com.example.demo.subscriptionbackgroundflow.constants.Constants
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.isAdsShowing
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.isTestMode
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mRewardedID
 import com.example.demo.subscriptionbackgroundflow.helper.logD
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
@@ -16,7 +17,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.OnUserEarnedRewardListener
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
-import com.example.demo.subscriptionbackgroundflow.myadslibrary.kotlin.appid.AppIDs
+
 
 class RewardedAds {
 
@@ -57,11 +58,7 @@ class RewardedAds {
         var s = if (isTestMode) {
             "ca-app-pub-3940256099942544/5224354917"
         } else {
-            if (Adx == true) {
-                AppIDs.instnace?.getGoogleAdxRewardVideo() ?: ""
-            } else {
-                AppIDs.instnace?.getGoogleRewardVideo() ?: ""
-            }
+            mRewardedID
         }
     
         logD(TAG, "MEDIUM_RECTANGLE  RewardedID ->$s")

@@ -7,13 +7,14 @@ import com.example.demo.subscriptionbackgroundflow.basemodule.BaseSharedPreferen
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.isAdsShowing
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.isTestMode
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.isoutApp
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mAppOpenID
 import com.example.demo.subscriptionbackgroundflow.helper.logD
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.appopen.AppOpenAd
-import com.example.demo.subscriptionbackgroundflow.myadslibrary.kotlin.appid.AppIDs
+
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -45,11 +46,7 @@ class AppOpen_LANDSCAPE(var myApplication: Context) {
         var s = if (isTestMode) {
             "ca-app-pub-3940256099942544/3419835294"
         } else {
-            if (Adx) {
-                AppIDs.instnace?.getAdxOpenAds() ?: ""
-            } else {
-                AppIDs.instnace?.getGoogleOpenAds() ?: ""
-            }
+            mAppOpenID
         }
         logD(TAG, "MEDIUM_RECTANGLE  AppOpen_LANDSCAPE ->$s")
         isSend = true

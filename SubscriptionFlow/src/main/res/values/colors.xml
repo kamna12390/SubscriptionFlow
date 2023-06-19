@@ -11,7 +11,7 @@
     <color name="colorPrimary">#FC7E53</color>
     <color name="colorPrimaryDark">#FC7E53</color>
     <color name="colorAccent">#FC7E53</color>
-
+    <color name="colornavi">#252525</color>
     //Background Subcription
     <color name="dark_gray">#808080</color>
     <color name="dark_gray_one">#6E6C6C</color>

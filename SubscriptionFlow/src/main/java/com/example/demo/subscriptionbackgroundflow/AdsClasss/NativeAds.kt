@@ -11,6 +11,7 @@ import com.example.demo.subscriptionbackgroundflow.constants.Constants
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.isDebugMode
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.isTestMode
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.isoutApp
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mNativeAdsID
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mNew_NativeAdsLayout
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mOld_NativeAdsLayout
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.unNativeAd
@@ -19,7 +20,7 @@ import com.google.android.gms.ads.*
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdOptions
 import com.google.android.gms.ads.nativead.NativeAdView
-import com.example.demo.subscriptionbackgroundflow.myadslibrary.kotlin.appid.AppIDs
+
 import org.jetbrains.anko.layoutInflater
 
 class NativeAds {
@@ -30,11 +31,7 @@ class NativeAds {
         var s = if (isTestMode) {
             "ca-app-pub-3940256099942544/2247696110"
         } else {
-            if (Adx == true) {
-                AppIDs.instnace?.getGoogleAdxNative() ?: ""
-            } else {
-                AppIDs.instnace?.getGoogleNative() ?: ""
-            }
+            mNativeAdsID
         }
         logD(TAG, "MEDIUM_RECTANGLE  NativeID ->$s")
         if (isSend){

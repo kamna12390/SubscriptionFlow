@@ -8,18 +8,24 @@ import com.crop.photo.image.resize.cut.tools.subscripction.ProductPurchaseHelper
 import com.example.demo.subscriptionbackgroundflow.basemodule.BaseSharedPreferences
 import com.example.demo.subscriptionbackgroundflow.constants.Constants
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.BASIC_SKU
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.BaseSubscriptionBackground
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.IsOutAppPermission
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.NavigationBarColor
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.PREMIUM_SIX_SKU
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.PREMIUM_SKU
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.Purchase_ID
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.SUBButtonTextColor
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.SubscriptionBackground
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.isDebugMode
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.isTestMode
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.isoutApp
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mAppIcon
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mAppName
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mAppNameColor
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mBasic_Line_Icon
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mClose_Icon
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mIsRevenuCat
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mMainLineColor
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mNew_NativeAdsLayout
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mOld_NativeAdsLayout
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mPremiumLine
@@ -28,13 +34,17 @@ import com.example.demo.subscriptionbackgroundflow.constants.Constants.mPremium_
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mPremium_CardSelected_Icon
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mPremium_Cardunselected_Icon
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mPremium_True_Icon
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mPriceBackground
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mPriceLineColor
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mPrivacyPolicyURL
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mSYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mSmallSubLineColor
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mSubLineColor
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.packagerenlist
 import com.example.demo.subscriptionbackgroundflow.helper.logD
 import com.revenuecat.purchases.Purchases
 import com.revenuecat.purchases.PurchasesConfiguration
 import com.revenuecat.purchases.getOfferingsWith
-import com.example.demo.subscriptionbackgroundflow.myadslibrary.kotlin.Helper
-import com.example.demo.subscriptionbackgroundflow.myadslibrary.kotlin.appid.AppIDs
  object SubscriptionClass {
     public class ActivityBuilder(private val activity: Context) :
         Builder() {
@@ -96,18 +106,18 @@ import com.example.demo.subscriptionbackgroundflow.myadslibrary.kotlin.appid.App
             return this
         }
 
-        override fun Adsliber(int: Int,life: LifecycleOwner): Builder {
-            logD("mAdsAppID", "mAdsAppID->$int---$isDebugMode")
-//            Toast.makeText(activity,"mAdsAppID->$int---$isDebugMode",Toast.LENGTH_LONG).show()
-            Helper().startDataSync(activity, life)
-            AppIDs.init(activity, int, false)
-
-            logD(
-                "SubscriptionList",
-                "=->${packagerenlist?.toString()}"
-            )
-            return this
-        }
+//        override fun Adsliber(int: Int,life: LifecycleOwner): Builder {
+//            logD("mAdsAppID", "mAdsAppID->$int---$isDebugMode")
+////            Toast.makeText(activity,"mAdsAppID->$int---$isDebugMode",Toast.LENGTH_LONG).show()
+//            Helper().startDataSync(activity, life)
+//            AppIDs.init(activity, int, false)
+//
+//            logD(
+//                "SubscriptionList",
+//                "=->${packagerenlist?.toString()}"
+//            )
+//            return this
+//        }
     }
 
     abstract class Builder  {
@@ -172,7 +182,14 @@ import com.example.demo.subscriptionbackgroundflow.myadslibrary.kotlin.appid.App
         fun getIsOutAppPermission(): Boolean {
             return IsOutAppPermission
         }
-
+        fun setAdsID(mAppOpenID:String?="",mBannerAdaptiveID:String?="",mInterstitialID:String?="",mNativeAdsID:String?="",mRewardedID:String?=""): Builder {
+            Constants.mAppOpenID=mAppOpenID
+            Constants.mBannerAdaptiveID=mBannerAdaptiveID
+            Constants.mInterstitialID=mInterstitialID
+            Constants.mNativeAdsID=mNativeAdsID
+            Constants.mRewardedID=mRewardedID
+            return this
+        }
         fun setActivityOpen(boolean: Boolean, application: Application): Builder {
             BaseSharedPreferences(application).mActivityOpen = boolean
             return this
@@ -186,6 +203,14 @@ import com.example.demo.subscriptionbackgroundflow.myadslibrary.kotlin.appid.App
             isTestMode = boolean
             return this
         }
+        fun setSYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION(boolean: Boolean): Builder {
+            mSYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION = boolean
+            return this
+        }
+        fun setPrivacyPolicyURL(string: String): Builder {
+            mPrivacyPolicyURL = string
+            return this
+        }
 
         fun setPremium_True_Icon(drawable: Drawable): Builder {
             mPremium_True_Icon = drawable
@@ -194,6 +219,18 @@ import com.example.demo.subscriptionbackgroundflow.myadslibrary.kotlin.appid.App
 
         fun setBasic_Line_Icon(drawable: Drawable): Builder {
             mBasic_Line_Icon = drawable
+            return this
+        }
+        fun setBaseSubscriptionBackground(drawable: Drawable): Builder {
+            BaseSubscriptionBackground = drawable
+            return this
+        }
+        fun setSubscriptionBackground(drawable: Drawable): Builder {
+            SubscriptionBackground = drawable
+            return this
+        }
+        fun setPriceBackground(drawable: Drawable): Builder {
+            mPriceBackground = drawable
             return this
         }
 
@@ -232,8 +269,33 @@ import com.example.demo.subscriptionbackgroundflow.myadslibrary.kotlin.appid.App
             return this
         }
 
-        fun setAppName(AppName: String): Builder {
+        fun setAppName(AppName: String, color: Int): Builder {
             mAppName = AppName
+            mAppNameColor=color
+            return this
+        }
+        fun setMainLineColor(color: Int): Builder {
+            mMainLineColor=color
+            return this
+        }
+        fun setSubLineColor(color: Int): Builder {
+            mSubLineColor=color
+            return this
+        }
+        fun setSmallSubLineColor(color: Int): Builder {
+            mSmallSubLineColor=color
+            return this
+        }
+        fun setSUBButtonTextColor(color: Int): Builder {
+            SUBButtonTextColor=color
+            return this
+        }
+        fun setPriceLineColor(color: Int): Builder {
+            mPriceLineColor=color
+            return this
+        }
+        fun setNavigationBarColor(color: Int): Builder {
+            NavigationBarColor =color
             return this
         }
 
@@ -255,6 +317,6 @@ import com.example.demo.subscriptionbackgroundflow.myadslibrary.kotlin.appid.App
         }
 
         abstract fun Subcall(): Builder
-        abstract fun Adsliber(int: Int,life: LifecycleOwner): Builder
+//        abstract fun Adsliber(int: Int,life: LifecycleOwner): Builder
     }
 }

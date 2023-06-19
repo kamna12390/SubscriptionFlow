@@ -15,7 +15,7 @@
         <activity
             android:name=".activity.SubscriptionBackgroundActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppThemeSubscription" />
+            android:theme="@style/AppThemeSubscription"/>
         <activity
             android:name=".activity.PrivacyActivity"
             android:screenOrientation="portrait"
@@ -24,29 +24,17 @@
             android:name=".activity.TermsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppThemeSubscription"/>
-<!--        <activity-->
-<!--            android:name=".myadslibrary.ui.MoreAppActivity"-->
-<!--            android:screenOrientation="portrait"-->
-<!--            android:theme="@style/moreAppTheme" />-->
-<!--        <activity-->
-<!--            android:name=".myadslibrary.ui.MoreAppActivityNew"-->
-<!--            android:screenOrientation="portrait"-->
-<!--            android:theme="@style/moreAppTheme" />-->
 
-        <activity
-            android:name=".myadslibrary.ui.AdActivity"
-            android:screenOrientation="portrait" />
 <!--        <activity-->
-<!--            android:name=".myadslibrary.ui.NewMoreAppActivity"-->
-<!--            android:screenOrientation="portrait"-->
-<!--            android:theme="@style/moreAppTheme"/>-->
+<!--            android:name=".myadslibrary.ui.AdActivity"-->
+<!--            android:screenOrientation="portrait" />-->
 
-        <receiver android:exported="true"
-            android:name=".myadslibrary.receiver.NetworkChangeReceiver">
-            <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-            </intent-filter>
-        </receiver>
+<!--        <receiver android:exported="true"-->
+<!--            android:name=".myadslibrary.receiver.NetworkChangeReceiver">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
     </application>
 
 </manifest>

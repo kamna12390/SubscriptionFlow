@@ -1,14 +1,10 @@
 package com.example.demo.subscriptionbackgroundflow.activity
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
-import android.content.res.Resources
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.LinearLayout
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
@@ -17,17 +13,14 @@ import com.example.demo.subscriptionbackgroundflow.AdsClasss.InterstitialAds
 import com.example.demo.subscriptionbackgroundflow.R
 import com.example.demo.subscriptionbackgroundflow.basemodule.BaseSharedPreferences
 import com.example.demo.subscriptionbackgroundflow.constants.Constants
-import com.example.demo.subscriptionbackgroundflow.constants.Constants.BASIC_SKU
-import com.example.demo.subscriptionbackgroundflow.constants.Constants.PREMIUM_SIX_SKU
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.NavigationBarColor
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mHEIGHT
-import com.example.demo.subscriptionbackgroundflow.constants.Constants.mIsRevenuCat
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mSYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mWIDTH
 import com.example.demo.subscriptionbackgroundflow.databinding.ActivitySubscriptionBackgroundBinding
 import com.example.demo.subscriptionbackgroundflow.helper.*
-import com.example.demo.subscriptionbackgroundflow.manager.PreferencesKeys
 import com.example.demo.subscriptionbackgroundflow.ui.BaseSubscriptionActivity
 import com.example.demo.subscriptionbackgroundflow.viewmodel.SubscriptionBackgroundActivityViewModel
-import com.example.demo.subscriptionbackgroundflow.viewmodel.SubscriptionViewModel
 import org.jetbrains.anko.displayMetrics
 
 class SubscriptionBackgroundActivity : BaseSubscriptionActivity() {
@@ -39,6 +32,7 @@ class SubscriptionBackgroundActivity : BaseSubscriptionActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         hideSystemUI()
+        setStatusBarGradiant(this,NavigationBarColor,mSYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_subscription_background)
         binding.viewmodel = SubscriptionBackgroundActivityViewModel(binding, this,liveDataPeriod,liveDataPrice,subscriptionManager,object :SubscriptionBackgroundActivityViewModel.IsSelecterdPlan{
             override fun monMonthPlan() {
@@ -129,7 +123,7 @@ class SubscriptionBackgroundActivity : BaseSubscriptionActivity() {
                             or View.SYSTEM_UI_FLAG_IMMERSIVE)
             }
         }
-//        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
+
 
     }
 

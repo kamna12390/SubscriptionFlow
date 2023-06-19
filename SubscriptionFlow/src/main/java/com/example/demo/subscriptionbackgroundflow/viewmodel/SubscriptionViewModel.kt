@@ -14,19 +14,27 @@ import com.crop.photo.image.resize.cut.tools.subscripction.ProductPurchaseHelper
 import com.example.demo.subscriptionbackgroundflow.activity.PrivacyActivity
 import com.example.demo.subscriptionbackgroundflow.activity.SubscriptionActivity.Companion.plans
 import com.example.demo.subscriptionbackgroundflow.activity.TermsActivity
-import com.example.demo.subscriptionbackgroundflow.basemodule.BaseSharedPreferences
 import com.example.demo.subscriptionbackgroundflow.constants.Constants
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.PREMIUM_SIX_SKU
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.PREMIUM_SKU
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.SUBButtonTextColor
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.SubscriptionBackground
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mAppNameColor
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mIsRevenuCat
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mPremiumScreenLine
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mPremium_CardSelected_Icon
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mPremium_Cardunselected_Icon
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mPriceBackground
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mPriceLineColor
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mSmallSubLineColor
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mSubLineColor
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.packagerenlist
 import com.example.demo.subscriptionbackgroundflow.databinding.ActivitySubscriptionBinding
 import com.example.demo.subscriptionbackgroundflow.helper.*
 import com.example.demo.subscriptionbackgroundflow.manager.PreferencesKeys
 import com.example.demo.subscriptionbackgroundflow.manager.SubscriptionManager
+import org.jetbrains.anko.backgroundDrawable
+import org.jetbrains.anko.textColor
 
 
 class SubscriptionViewModel (
@@ -62,6 +70,22 @@ class SubscriptionViewModel (
     @SuppressLint("SetTextI18n")
     fun setSubScriptionUI() {
         with(binding) {
+            txtAppname.textColor= mActivity.resources.getColor(mAppNameColor!!)
+            txtMessage.textColor= mActivity.resources.getColor(mSubLineColor!!)
+            txtMonthBottom.textColor= mActivity.resources.getColor(mSubLineColor!!)
+            txtYearBottom.textColor= mActivity.resources.getColor(mSubLineColor!!)
+            txtFeature.textColor= mActivity.resources.getColor(mSmallSubLineColor!!)
+            txtBottom.textColor= mActivity.resources.getColor(mSmallSubLineColor!!)
+            txtBtnCondition.textColor= mActivity.resources.getColor(mSmallSubLineColor!!)
+            txtBtnPrivacy.textColor= mActivity.resources.getColor(mSmallSubLineColor!!)
+            txtAutoRenewMonth.textColor= mActivity.resources.getColor(mPriceLineColor!!)
+            txtAutoRenewYear.textColor= mActivity.resources.getColor(mPriceLineColor!!)
+            txtMonthlyPrice.textColor= mActivity.resources.getColor(mPriceLineColor!!)
+            txtYearlyPrice.textColor= mActivity.resources.getColor(mPriceLineColor!!)
+            txtUnlockKriadl.textColor=mActivity.resources.getColor(SUBButtonTextColor!!)
+            imgBg.background=SubscriptionBackground
+            mCVMonthLayout.background=mPriceBackground
+            mCVYearLayout.background=mPriceBackground
             if (mIsRevenuCat!!) {
                 packagerenlist!![0].sku.let {
                     if (it == "") {
@@ -321,6 +345,7 @@ private fun setLineView() {
                 val txt: TextView = mActivity.findViewById(redId)
                 txt.visibility = View.VISIBLE
                 txt.text = mPremiumScreenLine!![i].mLine
+                txt.textColor=mActivity.resources.getColor(mPremiumScreenLine!![i].mLineColor)
 
                 val id_name1 = "img_true${idname[i]}"
                 val redId1 =

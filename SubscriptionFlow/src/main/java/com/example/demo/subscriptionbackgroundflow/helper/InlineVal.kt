@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
 import android.graphics.Rect
+import android.graphics.drawable.Drawable
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
@@ -20,6 +21,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewTreeObserver
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
@@ -28,6 +30,7 @@ import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.view.updateLayoutParams
+import com.example.demo.subscriptionbackgroundflow.R
 import kotlin.math.roundToInt
 
 /**
@@ -45,6 +48,24 @@ fun View.click(action: (View) -> Unit) = setOnClickListener {
 
     lastClickTime = SystemClock.elapsedRealtime()
     action(it)
+}
+fun setStatusBarGradiant(
+    activity: Activity,
+    NavigationBarColor: Int?,
+    mSYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION: Boolean?
+) {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        val window = activity.window
+        val background: Drawable = activity.resources.getDrawable(R.drawable.ic_top_bar)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+//            window.statusBarColor = activity.resources.getColor(android.R.color.transparent)
+        window.navigationBarColor = activity.resources.getColor(NavigationBarColor!!)
+        window.setBackgroundDrawable(background)
+        if (mSYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION == true){
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION;
+        }
+
+    }
 }
 fun Context.showToast(msg: String, duration: Int = Toast.LENGTH_SHORT) = Toast.makeText(this, msg, duration).show()
 @Suppress("DEPRECATION")

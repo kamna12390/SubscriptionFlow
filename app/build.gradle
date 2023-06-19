@@ -8,17 +8,13 @@ android {
 
     defaultConfig {
         applicationId "com.example.demo.testsubscriptionflow"
-//        applicationId "com.crop.photo.image.resize.cut.tools"
-//        applicationId "com.image.scan.text"
-//        applicationId "com.background.eraser.remover.photo.layers.editor"
-//        applicationId "djmixer.sound.effects.musicmixplayer"
-        minSdk 19
         targetSdk 33
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdk 19
     }
 
     buildTypes {

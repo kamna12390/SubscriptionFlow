@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.example.demo.subscriptionbackgroundflow.R
 import com.example.demo.subscriptionbackgroundflow.basemodule.BaseActivity
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mPrivacyPolicyURL
 import com.example.demo.subscriptionbackgroundflow.helper.isOnline
 import kotlinx.android.synthetic.main.activity_privacy_policy.*
 
@@ -52,7 +53,7 @@ class PrivacyActivity : BaseActivity() {
     }
     @SuppressLint("SetJavaScriptEnabled")
     private fun startWebView() {
-        val url="https://agneshpipaliya.blogspot.com/2019/03/image-crop-n-wallpaper-changer.html"
+        val url=mPrivacyPolicyURL
         val settings: WebSettings = webView.settings
         settings.javaScriptEnabled = true
         pd_mdialog?.visibility=View.VISIBLE
@@ -78,6 +79,6 @@ class PrivacyActivity : BaseActivity() {
             ) {
             }
         }
-        webView?.loadUrl(url)
+        webView?.loadUrl(url!!)
     }
 }

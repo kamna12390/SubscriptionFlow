@@ -3,6 +3,7 @@ package com.example.demo.subscriptionbackgroundflow.viewmodel
 //import com.example.demo.subscriptionbackgroundflow.MyApplication.Companion.packagerenlist
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import android.graphics.Rect
 import android.os.Build
 import android.os.Handler
@@ -24,19 +25,27 @@ import com.example.demo.subscriptionbackgroundflow.AdsClasss.InterstitialAds
 import com.example.demo.subscriptionbackgroundflow.activity.SubscriptionActivity
 import com.example.demo.subscriptionbackgroundflow.basemodule.BaseSharedPreferences
 import com.example.demo.subscriptionbackgroundflow.constants.Constants
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.BaseSubscriptionBackground
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.PREMIUM_SIX_SKU
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.SUBButtonTextColor
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mAppIcon
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mAppName
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mAppNameColor
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mBasic_Line_Icon
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mClose_Icon
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mIsRevenuCat
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mMainLineColor
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mPremiumLine
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mPremiumScreenLine
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.mPremium_True_Icon
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mSmallSubLineColor
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mSubLineColor
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.packagerenlist
 import com.example.demo.subscriptionbackgroundflow.databinding.ActivitySubscriptionBackgroundBinding
 import com.example.demo.subscriptionbackgroundflow.helper.*
 import com.example.demo.subscriptionbackgroundflow.manager.PreferencesKeys
 import com.example.demo.subscriptionbackgroundflow.manager.SubscriptionManager
+import org.jetbrains.anko.textColor
 import kotlin.math.roundToInt
 
 class SubscriptionBackgroundActivityViewModel(
@@ -100,7 +109,16 @@ class SubscriptionBackgroundActivityViewModel(
                     fIconPosition = IconPosition.RIGHT // IconPosition Left or Right
                 )
             }
-            txtAppname.text=mAppName
+
+            txtAppname.textColor= mActivity.resources.getColor(mAppNameColor!!)
+            txtPremium.textColor= mActivity.resources.getColor(mMainLineColor!!)
+            txtBasic.textColor= mActivity.resources.getColor(mMainLineColor!!)
+            textPrice.textColor= mActivity.resources.getColor(mSubLineColor!!)
+            txtMessage1.textColor= mActivity.resources.getColor(mSubLineColor!!)
+            txtTryLimited.textColor= mActivity.resources.getColor(mSubLineColor!!)
+            txtTerms.textColor= mActivity.resources.getColor(mSmallSubLineColor!!)
+            txtUnlockKriadl.textColor=mActivity.resources.getColor(SUBButtonTextColor!!)
+            imgBg.background=BaseSubscriptionBackground
                 if (mIsRevenuCat!!){
                 Handler().postDelayed(Runnable {
                     packagerenlist?.get(0)?.freeTrialPeriod?.let { it1 ->
@@ -183,6 +201,7 @@ class SubscriptionBackgroundActivityViewModel(
                     val txt: TextView = mActivity.findViewById(redId)
                     txt.visibility=View.VISIBLE
                     txt.text= mPremiumLine!![i].mLine
+                    txt.textColor= mActivity.resources.getColor(mPremiumLine!![i].mLineColor)
 
                     val id_name1="img_true${idname[i]}"
                     val redId1=mActivity.resources.getIdentifier(id_name1,"id",mActivity.packageName)

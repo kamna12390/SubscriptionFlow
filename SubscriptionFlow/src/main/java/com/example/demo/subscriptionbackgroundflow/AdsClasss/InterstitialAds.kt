@@ -7,6 +7,7 @@ import com.example.demo.subscriptionbackgroundflow.helper.isOnline
 import com.example.demo.subscriptionbackgroundflow.basemodule.BaseSharedPreferences
 import com.example.demo.subscriptionbackgroundflow.constants.Constants
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.isAdsShowing
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mInterstitialID
 import com.example.demo.subscriptionbackgroundflow.helper.logD
 import com.google.android.gms.ads.AdError
 import com.google.android.gms.ads.AdRequest
@@ -14,7 +15,7 @@ import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
-import com.example.demo.subscriptionbackgroundflow.myadslibrary.kotlin.appid.AppIDs
+
 
 class InterstitialAds {
 
@@ -46,11 +47,7 @@ class InterstitialAds {
         var s = if (Constants.isTestMode) {
             "ca-app-pub-3940256099942544/1033173712"
         } else {
-            if (Adx == true) {
-                AppIDs.instnace?.getGoogleAdxInterstitial() ?: ""
-            } else {
-                AppIDs.instnace?.getGoogleInterstitial() ?: ""
-            }
+            mInterstitialID
         }
         logD(TAG, "MEDIUM_RECTANGLE  InterstitialID ->$s")
         isSend=true

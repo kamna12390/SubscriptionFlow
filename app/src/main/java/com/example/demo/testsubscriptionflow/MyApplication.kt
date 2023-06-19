@@ -6,8 +6,8 @@ import android.app.ActivityManager
 import android.app.Application
 import android.content.ComponentName
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
-import android.widget.Toast
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
@@ -21,7 +21,6 @@ import com.example.demo.subscriptionbackgroundflow.constants.Constants.IsOutAppP
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.currentActivity
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.isAdsShowing
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.isoutApp
-import com.example.demo.subscriptionbackgroundflow.helper.logD
 
 class MyApplication : AppSubscription(), LifecycleObserver,
     Application.ActivityLifecycleCallbacks {
@@ -45,54 +44,102 @@ class MyApplication : AppSubscription(), LifecycleObserver,
             sku = "subscribe_yearly_imagecrop_3999"
         )
     )
-    val AppID=7
+    val AppID = 7
     var appOpenManager: AppOpenManager? = null
 
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    @SuppressLint("UseCompatLoadingForDrawables", "NewApi", "ResourceAsColor")
     override fun onCreate() {
         super.onCreate()
         registerActivityLifecycleCallbacks(this)
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)
 
-         val mPremiumLine = arrayListOf(
-            Constants.LineWithIconModel("Custom Size",false,this.resources.getDrawable(R.drawable.ic_pip)),
-            Constants.LineWithIconModel("Multiple Merge Video",false,this.resources.getDrawable(R.drawable.ic_font)),
-            Constants.LineWithIconModel("Unique Mp3 Cutter",false,this.resources.getDrawable(R.drawable.ic_eff_background)),
-            Constants.LineWithIconModel("Advance Editing Tool",false,this.resources.getDrawable(R.drawable.ic_editong_tool)),
-            Constants.LineWithIconModel("Remove ADS",false,this.resources.getDrawable(R.drawable.ic_ads)),
-            Constants.LineWithIconModel("24/7 Customer Support",false,this.resources.getDrawable(R.drawable.ic_eff_background))
+        val mBasePremiumLine = arrayListOf(
+            Constants.LineWithIconModel(
+                "Restore Messages",
+                false,
+                this.resources.getDrawable(R.drawable.ic_restore),
+                R.color.white
+            ),
+            Constants.LineWithIconModel(
+                "Deleted Media Viewer",
+                false,
+                this.resources.getDrawable(R.drawable.ic_delete),
+                R.color.white
+            ),
+            Constants.LineWithIconModel(
+                "VIP Customer Support",
+                true,
+                this.resources.getDrawable(R.drawable.ic_vip),
+                R.color.white
+            ),
+            Constants.LineWithIconModel(
+                "Remove Ads",
+                true,
+                this.resources.getDrawable(R.drawable.ic_ad),
+                R.color.white
+            )
         )
-        val mPremiumScreenLine = arrayListOf(
-            Constants.LineWithIconModel("Advanced Editing Tool",false,this.resources.getDrawable(R.drawable.ic_pip)),
-            Constants.LineWithIconModel("Effective Backgrounds",false,this.resources.getDrawable(R.drawable.ic_font)),
-            Constants.LineWithIconModel("Unlimited Emojis & Fonts",false,this.resources.getDrawable(R.drawable.ic_eff_background)),
-            Constants.LineWithIconModel("All PRO Creative Templates",false,this.resources.getDrawable(R.drawable.ic_true_icon)),
-            Constants.LineWithIconModel("Ads Free Experience",false,this.resources.getDrawable(R.drawable.ic_ads)),
-            Constants.LineWithIconModel("No pay for any design",false,this.resources.getDrawable(R.drawable.ic_eff_background))
+        val mMainPremiumLine = arrayListOf(
+            Constants.LineWithIconModel(
+                "Restore Messages",
+                false,
+                this.resources.getDrawable(R.drawable.ic_restore),
+                R.color.white
+            ),
+            Constants.LineWithIconModel(
+                "Deleted Media Viewer",
+                false,
+                this.resources.getDrawable(R.drawable.ic_delete),
+                R.color.white
+            ),
+            Constants.LineWithIconModel(
+                "VIP Customer Support",
+                true,
+                this.resources.getDrawable(R.drawable.ic_vip),
+                R.color.white
+            ),
+            Constants.LineWithIconModel(
+                "Remove Ads",
+                true,
+                this.resources.getDrawable(R.drawable.ic_ad),
+                R.color.white
+            )
         )
         SubscriptionClass.ActivityBuilder(this)
-            .Adsliber(AppID,ProcessLifecycleOwner.get())
+//            .Adsliber(AppID, ProcessLifecycleOwner.get())
             .setBASIC_SKU("subscribe_monthly_scantext")
             .setPREMIUM_SKU("subscribe_yearly_scantext")
             .setPREMIUM_SIX_SKU("subscribe_monthly_scantext")
-//            .setBASIC_SKU("subscribe_monthly_imagecrop")
-//            .setPREMIUM_SKU("subscribe_yearly_imagecrop")
-//            .setPREMIUM_SIX_SKU("subscribe_weekly_imagecrop")
-//            .setBASIC_SKU("subscribe_monthly_djmixer")
-//            .setPREMIUM_SKU("subscribe_yearly_djmixer")
-//            .setPREMIUM_SIX_SKU("subscribe_monthly_djmixer")
+            .setAdsID(
+                mAppOpenID = "ca-app-pub-3940256099942544/3419835294",
+                mBannerAdaptiveID = "ca-app-pub-3940256099942544/6300978111",
+                mInterstitialID = "ca-app-pub-3940256099942544/1033173712",
+                mNativeAdsID = "ca-app-pub-3940256099942544/2247696110",
+                mRewardedID = "ca-app-pub-3940256099942544/5224354917"
+            )
+            .setPrivacyPolicyURL("https://agneshpipaliya.blogspot.com/2019/03/image-crop-n-wallpaper-changer.html")
             .setIsRevenuCat(false)
             .setPurchase_ID("goog_IvcEUSwmDPbXkcYQpLvPKAhtbfO")
             .setIsDebugMode(true)
             .setIsTestMode(false)
-            .setListOfLine(mPremiumLine)
-            .setMainScreenListOfLine(mPremiumScreenLine)
+            .setSYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION(true)
+            .setListOfLine(mBasePremiumLine)
+            .setMainScreenListOfLine(mMainPremiumLine)
             .setDefaultPackagList(mPackagerenList)
-            .setAppName(this.resources.getString(R.string.app_name))
+            .setAppName(this.resources.getString(R.string.app_name), R.color.primery_color)
+            .setMainLineColor(R.color.white)
+            .setPriceLineColor(R.color.white)
+            .setSubLineColor(R.color.dark_gray)
+            .setNavigationBarColor(R.color.colornavi)
+            .setSmallSubLineColor(R.color.light_gray_color)
+            .setSUBButtonTextColor(R.color.black)
             .setAppIcon(this.resources.getDrawable(R.drawable.ic_app_icon))
-            .setPremium_True_Icon(this.resources.getDrawable(R.drawable.ic_select_trail))
+            .setPremium_True_Icon(this.resources.getDrawable(R.drawable.ic_true_icon))
             .setBasic_Line_Icon(this.resources.getDrawable(R.drawable.ic_line_lock))
+            .setBaseSubscriptionBackground(this.resources.getDrawable(R.drawable.ic_basesub))
+            .setSubscriptionBackground(this.resources.getDrawable(R.drawable.ic_basesub))
+            .setPriceBackground(this.resources.getDrawable(R.drawable.ic_price_bg))
             .setClose_Icon(this.resources.getDrawable(R.drawable.close_icon))
             .setPremium_CardSelected_Icon(this.resources.getDrawable(R.drawable.ic_pro_selected))
             .setPremium_Cardunselected_Icon(this.resources.getDrawable(R.drawable.ic_pro_selection))
@@ -125,7 +172,8 @@ class MyApplication : AppSubscription(), LifecycleObserver,
             if (!isoutApp!! && !IsOutAppPermission && !isAdsShowing
                 && (cn?.className != "com.example.demo.testsubscriptionflow.SplashScreenActivity")
                 && (cn?.className != "com.example.demo.subscriptionbackgroundflow.activity.SubscriptionBackgroundActivity")
-                && (cn?.className != "com.example.demo.subscriptionbackgroundflow.activity.SubscriptionActivity")) {
+                && (cn?.className != "com.example.demo.subscriptionbackgroundflow.activity.SubscriptionActivity")
+            ) {
                 currentActivity?.let {
                     appOpenManager!!.showAdIfAvailable(it,
                         object : AppOpenManager.OnShowAdCompleteListener {

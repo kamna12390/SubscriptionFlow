@@ -12,9 +12,10 @@ import android.widget.FrameLayout
 import com.example.demo.subscriptionbackgroundflow.basemodule.BaseSharedPreferences
 import com.example.demo.subscriptionbackgroundflow.constants.Constants
 import com.example.demo.subscriptionbackgroundflow.constants.Constants.isoutApp
+import com.example.demo.subscriptionbackgroundflow.constants.Constants.mBannerAdaptiveID
 import com.example.demo.subscriptionbackgroundflow.helper.logD
 import com.google.android.gms.ads.*
-import com.example.demo.subscriptionbackgroundflow.myadslibrary.kotlin.appid.AppIDs
+
 import org.jetbrains.anko.windowManager
 
 
@@ -37,11 +38,7 @@ object BannerAd {
         var s = if (Constants.isTestMode) {
             "ca-app-pub-3940256099942544/6300978111"
         } else {
-            if (Adx) {
-                AppIDs.instnace?.getGoogleAdxBanner() ?: ""
-            } else {
-                AppIDs.instnace?.getGoogleBanner() ?: ""
-            }
+            mBannerAdaptiveID
         }
         logD(TAG, "MEDIUM_RECTANGLE  BannerID ->$s")
         adView.adUnitId = s
@@ -122,11 +119,7 @@ object BannerAd {
         var s = if (Constants.isTestMode) {
             "ca-app-pub-3940256099942544/6300978111"
         } else {
-            if (Adx) {
-                AppIDs.instnace?.getGoogleAdxBanner() ?: ""
-            } else {
-                AppIDs.instnace?.getGoogleBanner() ?: ""
-            }
+            mBannerAdaptiveID
         }
         logD(TAG, "MEDIUM_RECTANGLE  BannerID ->$s")
         adView.adUnitId = s
@@ -198,11 +191,7 @@ object BannerAd {
         var s = if (Constants.isTestMode) {
             "ca-app-pub-3940256099942544/6300978111"
         } else {
-            if (Adx) {
-                AppIDs.instnace?.getGoogleAdxBanner() ?: ""
-            } else {
-                AppIDs.instnace?.getGoogleBanner() ?: ""
-            }
+            mBannerAdaptiveID
         }
         logD(TAG, "MEDIUM_RECTANGLE  BannerID ->$s")
         adView.adUnitId = s
