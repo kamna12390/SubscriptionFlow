@@ -142,8 +142,8 @@ afterEvaluate {
                 from components.release
 
                 groupId = 'com.github.kamna12390'
-                artifactId = 'TestSubscriptionFlow'
-                version = "1.0.0"
+                artifactId = 'SubscriptionFlow'
+                version = "1.0.1"
             }
         }
     }
