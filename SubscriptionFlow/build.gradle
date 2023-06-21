@@ -117,7 +117,7 @@ dependencies {
     def kotlin_version = '1.4.32'
     implementation "androidx.core:core-ktx:1.4.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.4.2"
+//    kapt "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.4.2"
 
     //Work Manager Library
     def work_version = "2.7.1"
