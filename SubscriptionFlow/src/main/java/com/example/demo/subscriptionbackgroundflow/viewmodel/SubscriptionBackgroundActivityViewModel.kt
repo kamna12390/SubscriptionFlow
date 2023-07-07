@@ -109,7 +109,7 @@ class SubscriptionBackgroundActivityViewModel(
                     fIconPosition = IconPosition.RIGHT // IconPosition Left or Right
                 )
             }
-
+            txtAppname.text=mAppName
             txtAppname.textColor= mActivity.resources.getColor(mAppNameColor!!)
             txtPremium.textColor= mActivity.resources.getColor(mMainLineColor!!)
             txtBasic.textColor= mActivity.resources.getColor(mMainLineColor!!)
