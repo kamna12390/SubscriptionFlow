@@ -138,10 +138,10 @@ class SubscriptionBackgroundActivityViewModel(
                     liveDataPeriod.observe(mActivity) { trial ->
                         liveDataPrice.observe(mActivity) { price ->
 
-                            logD(TAG," onCreate: liveDataPeriod->$trial\nliveDataPrice->$price\n trial->${subscriptionManager.getString(PreferencesKeys.MONTH_TRIAL_PERIOD,"")}")
-                            PREMIUM_SIX_SKU.getProductInfo?.let { month ->
 
-                                if (month.freeTrialPeriod.equals("Not Found", true)) {
+                            PREMIUM_SIX_SKU.getProductInfo?.let { month ->
+                                logD(TAG," onCreate: liveDataPeriod->$trial\nliveDataPrice->$price\n trial->${subscriptionManager.getString(PreferencesKeys.MONTH_TRIAL_PERIOD,"")}---${month.freeTrialPeriod}")
+                                if (month.freeTrialPeriod.equals("Not Found", true) || month.freeTrialPeriod.equals("", true) ) {
                                     textPrice.text = "${
                                         price[PREMIUM_SIX_SKU]?.replace(
                                             ".00",
