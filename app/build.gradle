@@ -7,7 +7,8 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.demo.testsubscriptionflow"
+//        applicationId "com.example.demo.testsubscriptionflow"
+        applicationId "com.auto.wallpaper.live.background.changer.editor"
         targetSdk 33
         versionCode 1
         versionName "1.0"

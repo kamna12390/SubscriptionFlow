@@ -134,37 +134,39 @@ class SubscriptionBackgroundActivityViewModel(
                     }
                 }, 200)
             }else{
-                liveDataPeriod.observe(mActivity) { trial ->
-                    liveDataPrice.observe(mActivity) { price ->
+                Handler().postDelayed({
+                    liveDataPeriod.observe(mActivity) { trial ->
+                        liveDataPrice.observe(mActivity) { price ->
 
-//                        logD(TAG," onCreate: liveDataPeriod->$trial\nliveDataPrice->$price\n trial->${subscriptionManager.getString(PreferencesKeys.MONTH_TRIAL_PERIOD,"")}")
-                        PREMIUM_SIX_SKU.getProductInfo?.let { month ->
+                            logD(TAG," onCreate: liveDataPeriod->$trial\nliveDataPrice->$price\n trial->${subscriptionManager.getString(PreferencesKeys.MONTH_TRIAL_PERIOD,"")}")
+                            PREMIUM_SIX_SKU.getProductInfo?.let { month ->
 
-                            if (month.freeTrialPeriod.equals("Not Found", true)) {
-                                textPrice.text = "${
-                                    price[PREMIUM_SIX_SKU]?.replace(
-                                        ".00",
-                                        ""
-                                    )
-                                }/Month."
-                                txtUnlockKriadl.text = "Continue"
-                            } else {
-                                textPrice.text =
-                                    "${
-                                        getSubTrial(
-                                            subscriptionManager.getString(PreferencesKeys.MONTH_TRIAL_PERIOD,"")
-                                        )
-                                    } FREE trial, then ${
+                                if (month.freeTrialPeriod.equals("Not Found", true)) {
+                                    textPrice.text = "${
                                         price[PREMIUM_SIX_SKU]?.replace(
                                             ".00",
                                             ""
                                         )
                                     }/Month."
-                                txtUnlockKriadl.text = "start free trial"
+                                    txtUnlockKriadl.text = "Continue"
+                                } else {
+                                    textPrice.text =
+                                        "${
+                                            getSubTrial(
+                                                subscriptionManager.getString(PreferencesKeys.MONTH_TRIAL_PERIOD,"")
+                                            )
+                                        } FREE trial, then ${
+                                            price[PREMIUM_SIX_SKU]?.replace(
+                                                ".00",
+                                                ""
+                                            )
+                                        }/Month."
+                                    txtUnlockKriadl.text = "start free trial"
+                                }
                             }
                         }
                     }
-                }
+                }, 200)
             }
         }
     }

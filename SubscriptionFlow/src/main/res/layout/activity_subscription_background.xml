@@ -545,7 +545,7 @@
                     android:layout_marginBottom="@dimen/_5sdp"
                     android:fontFamily="@font/poppins_medium"
                     android:gravity="center"
-                    android:text="7 Days Free Trial, Then ₹499/Month."
+                    android:text=""
                     android:textColor="@color/light_gray_color"
                     android:textSize="@dimen/_9sdp"
                     app:layout_constraintBottom_toTopOf="@+id/mCLUnlockLayout"

@@ -108,9 +108,9 @@ class MyApplication : AppSubscription(), LifecycleObserver,
         )
         SubscriptionClass.ActivityBuilder(this)
 //            .Adsliber(AppID, ProcessLifecycleOwner.get())
-            .setBASIC_SKU("subscribe_monthly_scantext")
-            .setPREMIUM_SKU("subscribe_yearly_scantext")
-            .setPREMIUM_SIX_SKU("subscribe_monthly_scantext")
+            .setBASIC_SKU("subscribe_monthly_autowallpaper")
+            .setPREMIUM_SKU("subscribe_yearly_autowallpaper")
+            .setPREMIUM_SIX_SKU("subscribe_monthly_autowallpaper")
             .setAdsID(
                 mAppOpenID = "ca-app-pub-3940256099942544/3419835294",
                 mBannerAdaptiveID = "ca-app-pub-3940256099942544/6300978111",
